@@ -1,0 +1,14 @@
+{
+    "majordomo_house": {
+        "column": {
+            "house_id": true,
+            "address": true,
+            "name": true,
+            "created_at": true,
+            "modified_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}
