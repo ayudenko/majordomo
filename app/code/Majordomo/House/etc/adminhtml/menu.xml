@@ -11,7 +11,7 @@
              title="Houses"
              module="Majordomo_House"
              sortOrder="10"
-             action="majordomo/houses"
+             action="majordomo_house/house/index"
              resource="Majordomo_House::house_list"
              parent="Majordomo_House::majordomo"/>
         <add id="Majordomo_House::house_configuration"
