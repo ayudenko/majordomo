@@ -5,7 +5,7 @@
         <add id="Majordomo_House::majordomo"
              title="Majordomo"
              module="Majordomo_House"
-             sortOrder="51"
+             sortOrder="19"
              resource="Majordomo_House::majordomo"/>
         <add id="Majordomo_House::house_list"
              title="Houses"

@@ -11,7 +11,7 @@
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
-                <item name="majordomo_house_house_listing_data_source"
+                <item name="house_listing_data_source"
                       xsi:type="string">Majordomo\House\Model\ResourceModel\House\Grid\Collection</item>
             </argument>
         </arguments>
