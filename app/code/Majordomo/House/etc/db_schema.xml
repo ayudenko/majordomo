@@ -2,7 +2,7 @@
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
     <table name="majordomo_house" resource="default" engine="innodb" comment="Majordomo House Table">
-        <column xsi:type="int" name="house_id" padding="11" unsigned="false" nullable="false" identify="true" comment="House ID"/>
+        <column xsi:type="int" name="house_id" padding="11" unsigned="true" nullable="false" identity="true" comment="House ID"/>
         <column xsi:type="varchar" name="address" nullable="false" comment="House Address"/>
         <column xsi:type="varchar" name="name" nullable="true" comment="House Name"/>
         <column xsi:type="datetime" name="created_at" on_update="false" default="CURRENT_TIMESTAMP" nullable="false" comment="House record creation date"/>

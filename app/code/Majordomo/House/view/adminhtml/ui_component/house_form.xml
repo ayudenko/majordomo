@@ -10,17 +10,11 @@
     </argument>
     <settings>
         <buttons>
-            <button name="back" class="Majordomo\House\Block\Adminhtml\House\Edit\BackButton">
-                <label translate="true">Back</label>
-                <class>back</class>
-                <url path="'*/*/'"/>
-            </button>
-            <button name="delete" class="Majordomo\House\Block\Adminhtml\House\Edit\DeleteButton"/>
+            <button name="back" class="Majordomo\House\Block\Adminhtml\House\Edit\BackButton"/>
             <button name="reset" class="Majordomo\House\Block\Adminhtml\House\Edit\ResetButton"/>
             <button name="save" class="Majordomo\House\Block\Adminhtml\House\Edit\SaveButton"/>
         </buttons>
         <layout>
-<!--            <navContainerName>left</navContainerName>-->
             <type>tabs</type>
         </layout>
         <deps>
@@ -35,8 +29,8 @@
             </item>
         </argument>
         <settings>
-            <validateUrl path="*/*/validate"></validateUrl>
-            <submitUrl path="*/*/save"></submitUrl>
+<!--            <validateUrl path="*/*/validate"></validateUrl>-->
+            <submitUrl path="*/*/add"></submitUrl>
         </settings>
         <dataProvider class="Majordomo\House\Model\House\DataProvider" name="house_form_data_source">
             <settings>
