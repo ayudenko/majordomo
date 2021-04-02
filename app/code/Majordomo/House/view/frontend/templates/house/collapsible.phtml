@@ -1,0 +1,19 @@
+<?php
+/**
+ * @var \Magento\Framework\View\Element\Template $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+?>
+
+<div class="block <?= $escaper->escapeHtmlAttr($block->getBlockCss()) ?>">
+    <div class="<?= $escaper->escapeHtmlAttr($block->getBlockCss()) ?>-title"
+         data-mage-init='{"toggleAdvanced": {"toggleContainers": "#<?= $escaper->escapeHtmlAttr($block->getBlockCss()) ?>", "selectorsToggleClass": "active"}}'>
+        <strong>
+            <?= $escaper->escapeHtml(__($block->getData('title'))) ?>
+        </strong>
+    </div>
+    <div class="content <?= $escaper->escapeHtmlAttr($block->getBlockCss()) ?>-content"
+         id="<?= $escaper->escapeHtmlAttr($block->getBlockCss()) ?>">
+        <?= $block->getChildHtml() ?>
+    </div>
+</div>
