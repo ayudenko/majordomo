@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<page layout="2columns-left" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <container name="house_container">
+                <block class="Majordomo\House\Block\House" name="customer_house" cacheable="false" template="Majordomo_House::house.phtml"/>
+            </container>
+            <referenceBlock name="catalog.compare.sidebar" remove="true"/>
+            <referenceBlock name="wishlist_sidebar" remove="true"/>
+        </referenceContainer>
+        <attribute name="class" value="account"/>
+        <referenceContainer name="sidebar.main">
+            <block class="Magento\Framework\View\Element\Template" name="sidebar.main.houses" template="Magento_Theme::html/collapsible.phtml" before="-">
+                <arguments>
+                    <argument name="block_css" xsi:type="string">block-collapsible-nav</argument>
+                </arguments>
+                <block class="Majordomo\House\Block\House\Sidebar" name="customer_houses_navigation" before="-">
+                    <arguments>
+                        <argument name="css_class" xsi:type="string">nav items</argument>
+                    </arguments>
+                    <block class="Magento\Customer\Block\Account\SortLinkInterface" name="customer-houses-navigation-house-link">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">My Account</argument>
+                            <argument name="path" xsi:type="string">customer/account</argument>
+                            <argument name="sortOrder" xsi:type="number">250</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Customer\Block\Account\Delimiter" name="customer-account-navigation-delimiter-1" template="Magento_Customer::account/navigation-delimiter.phtml">
+                        <arguments>
+                            <argument name="sortOrder" xsi:type="number">200</argument>
+                        </arguments>
+                    </block>
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

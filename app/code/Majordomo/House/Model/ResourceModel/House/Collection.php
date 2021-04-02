@@ -18,4 +18,20 @@ class Collection extends AbstractCollection
         $this->_init('Majordomo\House\Model\House', 'Majordomo\House\Model\ResourceModel\House');
     }
 
+    public function getHousesByCustomerId(int $customerId): self
+    {
+        $this->getSelect()
+            ->join(
+                ['house_customer' => $this->getTable('majordomo_house_customer')],
+                'main_table.house_id=house_customer.house_id',
+                ['house_customer.*'],
+            )->join(
+                ['customer' => $this->getTable('customer_entity')],
+                'house_customer.customer_id=customer.entity_id',
+                ['customer.*']
+            )
+            ->where('customer.entity_id', $customerId);
+            return $this;
+    }
+
 }

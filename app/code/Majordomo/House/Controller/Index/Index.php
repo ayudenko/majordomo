@@ -24,8 +24,8 @@ class Index extends Action
 
     public function execute()
     {
-        echo "Hellow, World!";
-        exit;
+        $page = $this->_pageFactory->create();
+        return $page;
     }
 
 }
