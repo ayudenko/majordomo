@@ -33,8 +33,7 @@
             <column name="room_id"/>
         </constraint>
         <constraint xsi:type="foreign" referenceId="FK_MAJORDOMO_ROOM_MAJORDOMO_HOUSE_HOUSE_ID_HOUSE_ID" table="majordom_room"
-                    column="house_id" referenceTable="majordomo_house" referenceColumn="house_id" onDelete="CASCADE">
-        </constraint>
+                    column="house_id" referenceTable="majordomo_house" referenceColumn="house_id" onDelete="CASCADE"/>
     </table>
 
 </schema>

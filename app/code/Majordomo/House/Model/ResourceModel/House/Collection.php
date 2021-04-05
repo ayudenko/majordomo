@@ -34,4 +34,20 @@ class Collection extends AbstractCollection
             return $this;
     }
 
+    public function getHousesByHouseId(int $houseId): self
+    {
+        $this->getSelect()
+            ->join(
+                ['house_customer' => $this->getTable('majordomo_house_customer')],
+                'main_table.house_id=house_customer.house_id',
+                ['house_customer.*'],
+            )->join(
+                ['customer' => $this->getTable('customer_entity')],
+                'house_customer.customer_id=customer.entity_id',
+                ['customer.*']
+            )
+            ->where('main_table.house_id', $houseId);
+        return $this;
+    }
+
 }

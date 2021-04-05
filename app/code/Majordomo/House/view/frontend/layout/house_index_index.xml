@@ -3,7 +3,19 @@
     <body>
         <referenceContainer name="content">
             <container name="house_container">
-                <block class="Majordomo\House\Block\House" name="customer_house" cacheable="false" template="Majordomo_House::house.phtml"/>
+                <block class="Majordomo\House\Block\House" name="customer_house" cacheable="false" template="Majordomo_House::house.phtml">
+                    <arguments>
+                        <argument name="jsLayout" xsi:type="array">
+                            <item name="components" xsi:type="array">
+                                <item name="house" xsi:type="array">
+                                    <item name="component" xsi:type="string">Majordomo_House/js/view/house</item>
+                                    <item name="template" xsi:type="string">Majordomo_House/house</item>
+                                    <item name="displayArea" xsi:type="string">house</item>
+                                </item>
+                            </item>
+                        </argument>
+                    </arguments>
+                </block>
             </container>
             <referenceBlock name="catalog.compare.sidebar" remove="true"/>
             <referenceBlock name="wishlist_sidebar" remove="true"/>
