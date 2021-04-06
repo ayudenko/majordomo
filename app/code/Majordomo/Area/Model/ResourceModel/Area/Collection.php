@@ -29,9 +29,9 @@ class Collection extends AbstractCollection
                 ['customer' => $this->getTable('customer_entity')],
                 'area_customer.customer_id=customer.entity_id',
                 ['customer.*']
-            )
-            ->where('customer.entity_id', $customerId);
-            return $this;
+            );
+        $this->addFieldToFilter('customer.entity_id', $customerId);
+        return $this;
     }
 
     public function getAreasByAreaId(int $areaId): self

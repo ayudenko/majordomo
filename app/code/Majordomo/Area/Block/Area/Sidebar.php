@@ -6,26 +6,29 @@ namespace Majordomo\Area\Block\Area;
 
 use Magento\Customer\Block\Account\SortLinkInterface;
 use Magento\Customer\Model\Session;
+use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Element\Html\Links;
 use Magento\Framework\View\Element\Template\Context;
 use Majordomo\Area\Model\AreaFactory;
-use Majordomo\Area\Model\ResourceModel\Area\Collection;
 
 class Sidebar extends Links
 {
 
     protected AreaFactory $_areaFactory;
     protected Session $_customerSession;
+    protected UrlInterface $_urlInterface;
 
     public function __construct(
         Context $context,
         AreaFactory $areaFactory,
         Session $session,
+        UrlInterface $urlInterface,
         array $data = []
     )
     {
         $this->_areaFactory = $areaFactory;
         $this->_customerSession = $session;
+        $this->_urlInterface = $urlInterface;
         parent::__construct($context, $data);
     }
 
@@ -44,25 +47,37 @@ class Sidebar extends Links
             }
         }
 
-        $areas = $this->getAreasByCustomer();
+        $areasByAddresses = $this->getAreasByCustomer();
         $sortOrder = 10;
-        foreach ($areas as $area) {
-            $sortLink = $this->getLayout()->createBlock('Magento\Customer\Block\Account\SortLink');
-            $sortLink->setLabel($area->getName());
-            $sortLink->setPath('area');
-            $sortLink->setSortOrder($sortOrder++);
-            $sortableLink[] = $sortLink;
+        foreach ($areasByAddresses as $areas) {
+            foreach ($areas as $area) {
+                $url = $this->getUrl('area', ['area_id' => $area->getId()]);
+                $sortableLink[] = $this->createLinkBlock($area->getName(), $url, $sortOrder);
+            }
         }
-
         usort($sortableLink, [$this, "compare"]);
         return array_merge($sortableLink, $links);
     }
 
-    private function getAreasByCustomer(): Collection
+    private function createLinkBlock(string $label, string $path, int $sortOrder)
+    {
+        $sortLink = $this->getLayout()
+            ->createBlock('Majordomo\Area\Block\Area\SortLink')
+            ->setLabel($label)
+            ->setPath($path)
+            ->setSortOrder($sortOrder);
+        return $sortLink;
+    }
+
+    private function getAreasByCustomer(): array
     {
         $customer = $this->_customerSession->getCustomer();
         $areas = $this->_areaFactory->create()->getAreasByCustomer($customer);
-        return $areas;
+        $addresses = [];
+        foreach ($areas as $area) {
+            $addresses[$area['address']][] = $area;
+        }
+        return $addresses;
     }
 
     /**

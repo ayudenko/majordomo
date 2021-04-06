@@ -11,6 +11,7 @@
                                     <item name="component" xsi:type="string">Majordomo_Area/js/view/area</item>
                                     <item name="template" xsi:type="string">Majordomo_Area/area</item>
                                     <item name="displayArea" xsi:type="string">area</item>
+                                    <item name="houseAjaxPath" xsi:type="string">area/area/ajax</item>
                                 </item>
                             </item>
                         </argument>
@@ -20,7 +21,6 @@
             <referenceBlock name="catalog.compare.sidebar" remove="true"/>
             <referenceBlock name="wishlist_sidebar" remove="true"/>
         </referenceContainer>
-        <attribute name="class" value="account"/>
         <referenceContainer name="sidebar.main">
             <block class="Magento\Framework\View\Element\Template" name="sidebar.main.areas" template="Majordomo_Area::area/collapsible.phtml" before="-">
                 <arguments>

@@ -52,7 +52,7 @@ class Area extends AbstractModel implements IdentityInterface
 
     public function getAreasByCustomer(Customer $customer): Collection
     {
-        return $this->_collectionFactory->create()->getAreasByCustomerId($customer->getId())->addFieldToSelect(['name']);
+        return $this->_collectionFactory->create()->getAreasByCustomerId($customer->getId())->addFieldToSelect(['*']);
     }
 
     protected function _construct()

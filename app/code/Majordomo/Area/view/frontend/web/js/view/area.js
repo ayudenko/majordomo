@@ -3,19 +3,28 @@ define(
         'ko',
         'uiComponent',
         'mage/url',
-        'mage/storage'
+        'mage/storage',
     ],
     function (ko, Component, urlBuilder, storage) {
         'use strict';
-        let areaId = 1;
+        let areaId, houseAjaxPath, template;
         return Component.extend({
+            initialize: function (config) {
+                this._super();
+                areaId = config.area_id;
+                houseAjaxPath = config.houseAjaxPath;
+                template = config.template;
+            },
             defaults: {
-                template: 'Majordomo_Area/area',
+                template: template,
             },
             area: ko.observableArray([]),
             getArea: function () {
                 let self = this;
-                let serviceUrl = urlBuilder.build('area/area/ajax?areaId=' + areaId);
+                if (!Number.isInteger(parseInt(areaId))) {
+                    throw 'Wrong areaId value!';
+                }
+                let serviceUrl = urlBuilder.build(houseAjaxPath + '?areaId=' + areaId);
                 return storage.get(
                     serviceUrl,
                     ''
