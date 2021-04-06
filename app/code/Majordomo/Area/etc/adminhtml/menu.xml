@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Majordomo_Area::majordomo"
+             title="Majordomo"
+             module="Majordomo_Area"
+             sortOrder="19"
+             resource="Majordomo_Area::majordomo"/>
+        <add id="Majordomo_Area::area_list"
+             title="Areas"
+             module="Majordomo_Area"
+             sortOrder="10"
+             action="majordomo_area/area/index"
+             resource="Majordomo_Area::area_list"
+             parent="Majordomo_Area::majordomo"/>
+        <add id="Majordomo_Area::area_configuration"
+             title="Area Configuration"
+             module="Majordomo_Area"
+             sortOrder="99"
+             parent="Majordomo_Area::majordomo"
+             action="adminhtml/system_config/edit/section/area"
+             resource="Majordomo_Area::area_configuration"/>
+    </menu>
+</config>

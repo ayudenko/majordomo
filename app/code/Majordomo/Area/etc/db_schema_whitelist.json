@@ -1,0 +1,25 @@
+{
+    "majordomo_area": {
+        "column": {
+            "area_id": true,
+            "address": true,
+            "name": true,
+            "created_at": true,
+            "modified_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "majordomo_area_customer": {
+        "column": {
+            "customer_id": true,
+            "area_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAJORDOMO_AREA_CUSTOMER_AREA_ID_MAJORDOMO_AREA_AREA_ID": true,
+            "MAJORDOMO_AREA_CUSTOMER_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID": true
+        }
+    }
+}
