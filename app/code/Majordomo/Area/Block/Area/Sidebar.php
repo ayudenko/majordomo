@@ -24,8 +24,7 @@ class Sidebar extends Links
         Session $session,
         UrlInterface $urlInterface,
         array $data = []
-    )
-    {
+    ) {
         $this->_areaFactory = $areaFactory;
         $this->_customerSession = $session;
         $this->_urlInterface = $urlInterface;
@@ -49,24 +48,15 @@ class Sidebar extends Links
 
         $areasByAddresses = $this->getAreasByCustomer();
         $sortOrder = 10;
-        foreach ($areasByAddresses as $areas) {
+        foreach ($areasByAddresses as $address => $areas) {
+            $sortableLink[] = $this->createSectionBlock($address, $sortOrder++);
             foreach ($areas as $area) {
                 $url = $this->getUrl('area', ['area_id' => $area->getId()]);
-                $sortableLink[] = $this->createLinkBlock($area->getName(), $url, $sortOrder);
+                $sortableLink[] = $this->createSortableLinkBlock($area->getName(), $url, $sortOrder++);
             }
         }
         usort($sortableLink, [$this, "compare"]);
         return array_merge($sortableLink, $links);
-    }
-
-    private function createLinkBlock(string $label, string $path, int $sortOrder)
-    {
-        $sortLink = $this->getLayout()
-            ->createBlock('Majordomo\Area\Block\Area\SortLink')
-            ->setLabel($label)
-            ->setPath($path)
-            ->setSortOrder($sortOrder);
-        return $sortLink;
     }
 
     private function getAreasByCustomer(): array
@@ -78,6 +68,23 @@ class Sidebar extends Links
             $addresses[$area['address']][] = $area;
         }
         return $addresses;
+    }
+
+    private function createSortableLinkBlock(string $label, string $path, int $sortOrder)
+    {
+        return $this->getLayout()
+            ->createBlock('Majordomo\Area\Block\Area\SortLink')
+            ->setLabel($label)
+            ->setPath($path)
+            ->setSortOrder($sortOrder);
+    }
+
+    private function createSectionBlock(string $label, int $sortOrder)
+    {
+        return $this->getLayout()
+            ->createBlock('Majordomo\Area\Block\Area\Section')
+            ->setLabel($label)
+            ->setSortOrder($sortOrder);
     }
 
     /**

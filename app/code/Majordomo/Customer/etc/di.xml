@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Customer\Model\Customer">
+        <plugin name="magento_customer_add_section_address" type="Majordomo\Customer\Plugin\MagentoModelCustomerAddSectionAddress" sortOrder="1" disabled="false"/>
+    </type>
+    <preference for="Magento\Customer\Model\Customer" type="Majordomo\Customer\Model\Customer" />
+</config>

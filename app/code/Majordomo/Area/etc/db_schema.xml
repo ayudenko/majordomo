@@ -24,5 +24,4 @@
         <constraint xsi:type="foreign" referenceId="FK_MAJORDOMO_AREA_CUSTOMER_ENTITY_CUSTOMER_ID_ENTITY_ID" table="majordomo_area_customer"
                     column="customer_id" referenceTable="customer_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
     </table>
-
 </schema>
